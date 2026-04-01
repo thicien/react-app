@@ -35,6 +35,19 @@ function App() {
       }
     }
   };
+  const handleOperator = (nextOperator: string) => {
+    if (previouseValue && operator && !waitingForNewValue) {
+      const result = calculate(previouseValue, currentValue, operator);
+      setCurrentValue(result);
+      setPreviousValue(result);
+    } else {
+      setPreviousValue(currentValue)
+    }
+    setOperator(nextOperator);
+    setWaitingForNewValue(true);
+  };
+
+
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
@@ -46,26 +59,26 @@ function App() {
           <button className="bg-gray-300 text-black text-3xl py-6 hover:bg-gray-400">AC</button>
           <button className="bg-gray-300 text-black text-3xl py-6 hover:bg-gray-400">+/-</button>
           <button className="bg-gray-300 text-black text-3xl py-6 hover:bg-gray-400">%</button>
-          <button className="bg-orange-500 text-white text-4xl py-6 hover:bg-orange-400 focus:bg-orange-600">÷</button>
+          <button onClick={() => handleOperator ('/')} className="bg-orange-500 text-white text-4xl py-6 hover:bg-orange-400 focus:bg-orange-600">÷</button>
 
           <button onClick={() => handleDigit('7')}className="bg-gray-200 text-black text-4xl py-6 hover:bg-gray-300">7</button>
           <button onClick={() => handleDigit('8')} className="bg-gray-200 text-black text-4xl py-6 hover:bg-gray-300">8</button>
           <button onClick={() => handleDigit('9')} className="bg-gray-200 text-black text-4xl py-6 hover:bg-gray-300">9</button>
-          <button className="bg-orange-500 text-white text-4xl py-6 hover:bg-orange-400 focus:bg-orange-600">x</button>
+          <button onClick={() => handleOperator ('*')} className="bg-orange-500 text-white text-4xl py-6 hover:bg-orange-400 focus:bg-orange-600">x</button>
 
           <button onClick={() => handleDigit('4')} className="bg-gray-200 text-black text-4xl py-6 hover:bg-gray-300">4</button>
           <button onClick={() => handleDigit('5')} className="bg-gray-200 text-black text-4xl py-6 hover:bg-gray-300">5</button>
           <button onClick={() => handleDigit('6')} className="bg-gray-200 text-black text-4xl py-6 hover:bg-gray-300">6</button>
-          <button className="bg-orange-500 text-white text-5xl py-6 hover:bg-orange-400 focus:bg-orange-600">-</button>
+          <button onClick={() => handleOperator ('-')} className="bg-orange-500 text-white text-5xl py-6 hover:bg-orange-400 focus:bg-orange-600">-</button>
 
           <button onClick={() => handleDigit('1')} className="bg-gray-200 text-black text-4xl py-6 hover:bg-gray-300">1</button>
           <button onClick={() => handleDigit('2')} className="bg-gray-200 text-black text-4xl py-6 hover:bg-gray-300">2</button>
           <button onClick={() => handleDigit('3')} className="bg-gray-200 text-black text-4xl py-6 hover:bg-gray-300">3</button>
-          <button className="bg-orange-500 text-white text-5xl py-6 hover:bg-orange-400 focus:bg-orange-600">+</button>
+          <button onClick={() => handleOperator ('+')} className="bg-orange-500 text-white text-5xl py-6 hover:bg-orange-400 focus:bg-orange-600">+</button>
 
           <button onClick={() => handleDigit('0')} className="col-span-2 bg-gray-200 text-black text-4xl py-6 pl-10 text-left hover:bg-gray-300">0</button>
-          <button className="bg-gray-200 text-black text-4xl py-6 hover:bg-gray-300">.</button>
-          <button className="bg-orange-500 text-white text-4xl py-6 hover:bg-orange-400 focus:bg-orange-600">=</button>
+          <button  className="bg-gray-200 text-black text-4xl py-6 hover:bg-gray-300">.</button>
+          <button onClick={() => handleOperator ('=')}  className="bg-orange-500 text-white text-4xl py-6 hover:bg-orange-400 focus:bg-orange-600">=</button>
         </div>
       </div>
     </div>
