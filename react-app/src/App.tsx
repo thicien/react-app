@@ -46,7 +46,21 @@ function App() {
     setOperator(nextOperator);
     setWaitingForNewValue(true);
   };
-
+  const handleEqual = () => {
+    if (operator && previouseValue) {
+      const result = calculate(previouseValue, currentValue, operator);
+      setCurrentValue(result);
+      setPreviousValue(null);
+      setOperator(null);
+      setWaitingForNewValue(true)
+    }
+  };
+  const handlePercent = () => {
+    const value = parseInt(currentValue);
+    const divisor = 5;
+    if (isNaN(value)) return;
+    setCurrentValue(String(value % divisor));
+  }
 
 
   return (
@@ -58,7 +72,7 @@ function App() {
         <div className="grid grid-cols-4 gap-[1px] bg-gray-600 border-t border-gray-600">
           <button className="bg-gray-300 text-black text-3xl py-6 hover:bg-gray-400">AC</button>
           <button className="bg-gray-300 text-black text-3xl py-6 hover:bg-gray-400">+/-</button>
-          <button className="bg-gray-300 text-black text-3xl py-6 hover:bg-gray-400">%</button>
+          <button onClick={() => handlePercent ('%')} className="bg-gray-300 text-black text-3xl py-6 hover:bg-gray-400">%</button>
           <button onClick={() => handleOperator ('/')} className="bg-orange-500 text-white text-4xl py-6 hover:bg-orange-400 focus:bg-orange-600">÷</button>
 
           <button onClick={() => handleDigit('7')}className="bg-gray-200 text-black text-4xl py-6 hover:bg-gray-300">7</button>
@@ -77,7 +91,7 @@ function App() {
           <button onClick={() => handleOperator ('+')} className="bg-orange-500 text-white text-5xl py-6 hover:bg-orange-400 focus:bg-orange-600">+</button>
 
           <button onClick={() => handleDigit('0')} className="col-span-2 bg-gray-200 text-black text-4xl py-6 pl-10 text-left hover:bg-gray-300">0</button>
-          <button  className="bg-gray-200 text-black text-4xl py-6 hover:bg-gray-300">.</button>
+          <button onClick={() => handleDigit('.')} className="bg-gray-200 text-black text-4xl py-6 hover:bg-gray-300">.</button>
           <button onClick={() => handleOperator ('=')}  className="bg-orange-500 text-white text-4xl py-6 hover:bg-orange-400 focus:bg-orange-600">=</button>
         </div>
       </div>
