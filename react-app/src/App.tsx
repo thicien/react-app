@@ -3,7 +3,7 @@ import './App.css';
 
 function App() {
   const [currentValue, setCurrentValue] = useState('0');
-  const [previouseValue, setPreviousValue] = useState<string | null>(null);
+  const [previousValue, setPreviousValue] = useState<string | null>(null);
   const [operator, setOperator] = useState<string | null>(null);
   const [waitingForNewValue, setWaitingForNewValue] = useState(false);
   
@@ -17,6 +17,7 @@ function App() {
       case '-': result = numA - numB; break;
       case '*': result = numA * numB; break;
       case '/': result = numA / numB; break;
+      case '%': if (numB === 0) return "Error"; result = numA % numB; break; default: return b;
     }
     return String(Math.round(result * 100) / 100);
   };
@@ -35,9 +36,10 @@ function App() {
       }
     }
   };
+
   const handleOperator = (nextOperator: string) => {
-    if (previouseValue && operator && !waitingForNewValue) {
-      const result = calculate(previouseValue, currentValue, operator);
+    if (previousValue && operator && !waitingForNewValue) {
+      const result = calculate(previousValue, currentValue, operator);
       setCurrentValue(result);
       setPreviousValue(result);
     } else {
@@ -46,21 +48,16 @@ function App() {
     setOperator(nextOperator);
     setWaitingForNewValue(true);
   };
+  
   const handleEqual = () => {
-    if (operator && previouseValue) {
-      const result = calculate(previouseValue, currentValue, operator);
+    if (operator && previousValue) {
+      const result = calculate(previousValue, currentValue, operator);
       setCurrentValue(result);
       setPreviousValue(null);
       setOperator(null);
       setWaitingForNewValue(true)
     }
   };
-  const handlePercent = () => {
-    const value = parseInt(currentValue);
-    const divisor = 5;
-    if (isNaN(value)) return;
-    setCurrentValue(String(value % divisor));
-  }
 
 
   return (
@@ -72,8 +69,8 @@ function App() {
         <div className="grid grid-cols-4 gap-[1px] bg-gray-600 border-t border-gray-600">
           <button className="bg-gray-300 text-black text-3xl py-6 hover:bg-gray-400">AC</button>
           <button className="bg-gray-300 text-black text-3xl py-6 hover:bg-gray-400">+/-</button>
-          <button onClick={() => handlePercent ('%')} className="bg-gray-300 text-black text-3xl py-6 hover:bg-gray-400">%</button>
-          <button onClick={() => handleOperator ('/')} className="bg-orange-500 text-white text-4xl py-6 hover:bg-orange-400 focus:bg-orange-600">÷</button>
+          <button onClick={() => handleOperator('%')} className="bg-gray-300 text-black text-3xl py-6 hover:bg-gray-400">%</button>
+          <button onClick={() => handleOperator('/')} className="bg-orange-500 text-white text-4xl py-6 hover:bg-orange-400 focus:bg-orange-600">÷</button>
 
           <button onClick={() => handleDigit('7')}className="bg-gray-200 text-black text-4xl py-6 hover:bg-gray-300">7</button>
           <button onClick={() => handleDigit('8')} className="bg-gray-200 text-black text-4xl py-6 hover:bg-gray-300">8</button>
