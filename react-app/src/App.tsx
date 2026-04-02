@@ -69,7 +69,7 @@ function App() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
-      <div className="w-full max-w-sm  bg-gray-600 rounded-3xl overflow-hidden shadow-2xl pb-1">
+      <div className="w-full max-w-sm  bg-gray-600 overflow-hidden shadow-2xl pb-1">
         <div className="text-white text-right text-6xl font-light px-6 py-8">
           {currentValue}
         </div>
