@@ -75,9 +75,6 @@ function App() {
     }
   };
 
-
-
-
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
       <div className="w-full max-w-sm  bg-gray-600 overflow-hidden shadow-2xl pb-1">
@@ -113,4 +110,5 @@ function App() {
     </div>
   )
 }
+
 export default App;
