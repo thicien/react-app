@@ -66,6 +66,17 @@ function App() {
     setWaitingForNewValue(false);
   }
 
+  const handlePlusMinus = () => {
+    if (currentValue === '0') return;
+    if (currentValue.startsWith('-')) {
+      setCurrentValue(currentValue.substring(1));
+    } else {
+      setCurrentValue('-' + currentValue);
+    }
+  };
+
+
+
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
@@ -75,7 +86,7 @@ function App() {
         </div>
         <div className="grid grid-cols-4 gap-[1px] bg-gray-600 border-t border-gray-600">
           <button onClick={() => handleAC('AC')} className="bg-gray-300 text-black text-3xl py-6 hover:bg-gray-400">AC</button>
-          <button className="bg-gray-300 text-black text-3xl py-6 hover:bg-gray-400">+/-</button>
+          <button onClick={() => handlePlusMinus('+/-')}  className="bg-gray-300 text-black text-3xl py-6 hover:bg-gray-400">+/-</button>
           <button onClick={() => handleOperator('%')} className="bg-gray-300 text-black text-3xl py-6 hover:bg-gray-400">%</button>
           <button onClick={() => handleOperator('/')} className="bg-orange-500 text-white text-4xl py-6 hover:bg-orange-400 focus:bg-orange-600">÷</button>
 
