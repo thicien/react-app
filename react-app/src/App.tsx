@@ -59,7 +59,12 @@ function App() {
     }
   };
 
-  const handle
+  const handleAC = () => {
+    setCurrentValue('0');
+    // setOperator(null)
+    setPreviousValue(null);
+    setWaitingForNewValue(false);
+  }
 
 
   return (
@@ -69,7 +74,7 @@ function App() {
           {currentValue}
         </div>
         <div className="grid grid-cols-4 gap-[1px] bg-gray-600 border-t border-gray-600">
-          <button className="bg-gray-300 text-black text-3xl py-6 hover:bg-gray-400">AC</button>
+          <button onClick={() => handleAC('AC')} className="bg-gray-300 text-black text-3xl py-6 hover:bg-gray-400">AC</button>
           <button className="bg-gray-300 text-black text-3xl py-6 hover:bg-gray-400">+/-</button>
           <button onClick={() => handleOperator('%')} className="bg-gray-300 text-black text-3xl py-6 hover:bg-gray-400">%</button>
           <button onClick={() => handleOperator('/')} className="bg-orange-500 text-white text-4xl py-6 hover:bg-orange-400 focus:bg-orange-600">÷</button>
