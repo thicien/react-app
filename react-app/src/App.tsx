@@ -48,7 +48,7 @@ function App() {
     setOperator(nextOperator);
     setWaitingForNewValue(true);
   };
-  
+
   const handleEqual = () => {
     if (operator && previousValue) {
       const result = calculate(previousValue, currentValue, operator);
@@ -58,6 +58,8 @@ function App() {
       setWaitingForNewValue(true)
     }
   };
+
+  const handle
 
 
   return (
