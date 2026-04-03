@@ -30,7 +30,7 @@ function App() {
       if (currentValue === '0' && digit !== '.') {
         setCurrentValue(digit);
       } else if (digit === '.' && currentValue.includes('.')) {
-        return;
+        return '';
       } else {
         setCurrentValue(currentValue + digit);
       }
