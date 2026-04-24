@@ -1,22 +1,20 @@
-﻿import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import './index.css';
-import Login from './pages/Login';
-import { Register } from './pages/Register';
+﻿import './index.css';
+import Button from "./components/Button";
 
-function App() {
+export default function App() {
     return (
-        <BrowserRouter>
-            <div>
-                <Link to="/Login" style={{ marginRight: '10px' }}>Login</Link>
-                <Link to="/Register">Register</Link>
-            </div>
-            <Routes>
-                <Route path='/' element={<Login />} />
-                <Route path='/Login' element={<Login />} />
-                <Route path='/Register' element={<Register />} />
-            </Routes>
-        </BrowserRouter>
+        <main style={{ padding: '2rem' }}>
+            <h1 className='font-bold items-center'>Creating Reusable Components</h1>
+
+            <div className='space-x-1.5 p-2.5'>
+                <Button onClick={() => alert('Login successfully')}>Login</Button>
+                <Button className='bg-orange-400' onClick={() => alert('Registed successfully')}>Register</Button>
+                <Button variant='danger' onClick={() => alert('You redirected back to home page')}>Back To Home</Button>
+                <Button size="md">Click</Button>
+                <Button size="sm">Click</Button>
+                <Button variant="danger">Click</Button>
+            </div> 
+        </main>
     )
 }
 
-export default App;
