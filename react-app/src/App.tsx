@@ -1,4 +1,4 @@
-// import Counter from "./components/Counter";
+﻿// import Counter from "./components/Counter";
 
 // function App() {
 //   return (
@@ -23,5 +23,4 @@ function App() {
     </BrowserRouter>
   );
 }
-
 export default App;
